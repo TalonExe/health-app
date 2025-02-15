@@ -1,0 +1,15 @@
+[
+	{ "id": 1, "name": "Grilled Salmon", "benefits": ["heart health", "omega-3"] },
+	{ "id": 2, "name": "Kale Salad", "benefits": ["rich in iron", "fiber", "lowers cholesterol"] },
+	{
+		"id": 3,
+		"name": "Cheeseburger",
+		"benefits": ["protein", "energy boost"],
+		"not_recommended_for": ["heart disease", "diabetes"]
+	},
+	{
+		"id": 4,
+		"name": "Quinoa Bowl",
+		"benefits": ["gluten-free", "high protein", "good for digestion"]
+	}
+]

@@ -1,0 +1,10 @@
+{
+	"heart disease": {
+		"recommended": ["Grilled Salmon", "Kale Salad", "Quinoa Bowl"],
+		"not_recommended": ["Cheeseburger"]
+	},
+	"diabetes": {
+		"recommended": ["Grilled Salmon", "Kale Salad"],
+		"not_recommended": ["Cheeseburger"]
+	}
+}
