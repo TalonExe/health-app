@@ -1,13 +1,6 @@
 <script>
-    import menuRestaurant from "$lib/components/ui/card/menuRestaurant.svelte";
+    import MenuRestaurant from "$lib/components/ui/card/MenuRestaurant.svelte";
   </script>
-  
-  <MenuRestaurant 
-    title=""
-    description="A stunning view of nature."
-    content="This is a beautiful scene captured during sunset."
-    image="/images/landscape.jpg"
-  />
 
 <header class="bg-purple-500 h-15 flex items-center justify-center">
     <nav class="flex justify-center w-[92%] mx-auto">
@@ -21,3 +14,8 @@
             </ul>
     </nav>
 </header>
+  
+<MenuRestaurant
+title="Pasta"
+description="RM10.00"
+image="$lib/components/ui/card/placeholder.jpeg"/>

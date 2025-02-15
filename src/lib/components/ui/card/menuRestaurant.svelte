@@ -5,17 +5,19 @@
     import CardDescription from "$lib/components/ui/card/card-description.svelte";
     import CardContent from "$lib/components/ui/card/card-content.svelte";
     import CardFooter from "$lib/components/ui/card/card-footer.svelte";
+
+    let props = $props();
 </script>
 
 <Card>
     <CardHeader>
-      <CardTitle>Card Title</CardTitle>
-      <CardDescription>Card Description</CardDescription>
+      <img src={props.image} alt="" class="w-full h-40 object-cover rounded-t-lg" />  
+      <CardTitle>{props.title}</CardTitle>
+      <CardDescription>{props.description}</CardDescription>
     </CardHeader>
     <CardContent>
-      <p>Card Content</p>
     </CardContent>
     <CardFooter>
-      <p>Card Footer</p>
+      <button type="button">Modify</button>
     </CardFooter>
 </Card>
