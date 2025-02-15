@@ -4,7 +4,11 @@ import { preprocessMeltUI, sequence } from '@melt-ui/pp'
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+  
+    alias: {
+      "@/*": "./path/to/lib/*",
+    },
 	},
 preprocess: sequence([
     // ... other preprocessors

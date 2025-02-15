@@ -3,7 +3,7 @@
 </script> -->
 
 <div class = "flex justify-center items-center h-screen bg-gray-600">
-    <div class = "w-96 p-6 shadow-lg bg-white rounded-md">
+    <div class = "w-96 p-6 shadow-lg bg-white rounded-md left-2">
 
         <h1 class="text-3xl block text-center font-semibold">Login</h1>
         <hr class="mt-3">
