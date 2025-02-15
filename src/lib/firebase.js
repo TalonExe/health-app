@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithRedirect, signOut } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"; // ✅ Import Firestore
 
 var firebaseConfig = {
     apiKey: "AIzaSyA5CVy-pf6fLe3BFhFCOwWE9yzyP_uTp30",
@@ -10,10 +11,13 @@ var firebaseConfig = {
     appId: "1:459746208479:web:938c299f03d00900c0176a"
   
 };
+
 const app = initializeApp(firebaseConfig, {
   automaticDataCollectionEnabled: false, // ⛔️ Prevents auto-loading init.json
 });
+
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
-export { auth, provider, signInWithRedirect, signOut };
+export { auth, provider, signInWithRedirect, signOut, db };
