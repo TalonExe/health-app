@@ -4,19 +4,9 @@ Everything you need to build a Svelte project, powered by [`sv`](https://github.
 
 ## Setting Up
 1. The first step is to download bun and install as package manager. The link for downloading are provided as such:https://bun.sh/docs/installation
-2. Cloning this repository by using https link 
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
+2. Cloning this repository by using https link
+3. Open your project and use 'cd' in terminal to enter to your project directory
+4. Use 'bun install' to install and refresh all dependencies needed
 
 ## Developing
 
@@ -30,3 +20,10 @@ bun run dev -- --open
 ```
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Environment Variables
+
+'''bash
+GEMINI_API_KEY="Get your own key from the gemini developer website"
+FIREBASE_SECRET_KEY="Get from firebase console settings"
+'''
