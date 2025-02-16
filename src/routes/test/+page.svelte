@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from "svelte";
-
+    let {user} = $props()
   let menu = [];
   let customerConditions = ["heart disease"]; // User's health conditions
   let filteredMenu = [];
@@ -22,11 +22,12 @@ async function fetchFilteredMenu() {
         console.log("Gemini Raw Response:", text); // Debugging output
 
         // Clean up unwanted markdown formatting
-        text = text.replace(/^```JSON\n/, '').replace(/\n```$/, '').replace(/\n/g, '');
-
+        text = text.replace(/^```JSON\n/, '').replace(/^```json\n/, '').replace(/\n```$/, '').replace(/\n/g, '').trim();
+console.log(text)
         const data = JSON.parse(JSON.parse(text)); // Parse cleaned JSON 
         console.log(data) 
         filteredMenu = data.recommendations;
+          console.log(filteredMenu)
     } catch (error) {
         errorMessage = `Error: ${error.message}`;
     } finally {

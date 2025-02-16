@@ -1,9 +1,9 @@
-
 import { json } from '@sveltejs/kit';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-
+import dotenv from "dotenv";
+dotenv.config();
 // Replace with your Gemini API key
-const API_KEY = 'AIzaSyA7JPnBq4om65FbAuyb1vaYqVCLtQxTqrA';
+const API_KEY = process.env.GEMINI_SECRET;
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export async function POST({ request }) {
@@ -12,21 +12,32 @@ export async function POST({ request }) {
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
         const prompt = `
-        You are a nutritionist AI. I have the following food items:
+        You are a professional nutritionist AI. 
+        Given the following food menu with ingredients:
+        
         ${JSON.stringify(menu, null, 2)}
 
         The customer has these health conditions: ${conditions.join(', ')}.
 
-        Based on medical and nutritional data, recommend which foods are safe to eat.
-        Provide a JSON response with an array of recommended food names in the form of {'recommendations': [] }
+        Based on medical and nutritional guidelines, filter out any foods that may negatively affect these conditions. 
+        Only include foods that are safe to eat.
+        
+        Return a **valid JSON response** with the format:
+        {
+          "recommendations": [
+              "food1": "Food Name1",
+                "food2": "Food Name2"
+          ]
+        }
+        Do not return any explanations or Markdown formatting, only raw JSON.the response has to be an array of name of foods that are suitable to be eaten given the health conditions of the customer
         `;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        // Extract the JSON response (assuming Gemini returns JSON-like text)
-        // const recommendedMenu = JSON.parse(text);
-        const recommendedMenu = text;
+
+        // Ensure valid JSON output
+        const recommendedMenu = JSON.parse(text);
 
         return json(recommendedMenu);
     } catch (error) {
