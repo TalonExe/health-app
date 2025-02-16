@@ -17,7 +17,7 @@
 <div class="flex flex-col items-start justify-center">
     <label
         for={name}
-        class="mb-0.5 font-medium text-magnum-900"
+        class="mb-0.5 font-medium text-magnum-900 text-purple-100 mb-0.5"
         data-melt-part="root"
     >
         <span>{labelnm}</span>
@@ -25,7 +25,7 @@
     <input
         type="text"
         id={id}
-        class="h-10 w-[80%] rounded-md bg-white px-3 py-2 text-magnum-700"
+        class="h-10 w-100 rounded-md bg-white px-3 py-2 text-magnum-700" 
         placeholder={placeholder}
         bind:value={bindValue}/>
 </div>

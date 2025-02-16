@@ -19,7 +19,7 @@
     let { title, description, image, ingredients, class: className = '' } = $props();
 </script>
 
-<Card class="bg-white m-3 p-3 {className}">
+<Card class="bg-purple-100 m-3 p-3 {className}">
     <CardHeader>
         {#if image}
             <img 
@@ -37,7 +37,7 @@
     <CardFooter>
         <button 
             type="button" 
-            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            class="text-purple-100 font-fold bg-green-400 rounded-lg p-2 place-self-end"
         >
             Add to Cart
         </button>
