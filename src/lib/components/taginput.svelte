@@ -33,7 +33,7 @@
           >
           <button
             use:melt={$deleteTrigger(t)}
-            class="flex h-full items-center px-1 enabled:hover:bg-magnum-300"
+            class="flex h-full items-center px-1 enabled:hover:bg-magnum-300 w-10"
           >
             <X class="size-3" />
           </button>

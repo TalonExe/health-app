@@ -9,7 +9,7 @@
     let props = $props();
 </script>
 
-<Card class="bg-white m-3 p-3">
+<Card class="bg-purple-100 m-3 p-3">
     <CardHeader>
       <img src={props.image} alt="" class="w-full h-40 object-cover rounded-t-lg" />  
       <CardTitle>{props.title}</CardTitle>
@@ -20,6 +20,6 @@
         {props.ingredients}
     </CardContent>
     <CardFooter>
-      <button type="button" class="bg-blue-100 p-3">Add to Cart</button>
+      <button type="button" class="text-purple-100 font-fold bg-green-400 rounded-lg p-2 place-self-end">Add to Cart</button>
     </CardFooter>
 </Card>

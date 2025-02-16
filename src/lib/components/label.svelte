@@ -13,7 +13,7 @@
       <label
         use:melt={$root}
         for={a.name}
-        class="mb-0.5 font-medium text-magnum-900"
+        class="mb-0.5 font-medium text-magnum-900 text-purple-100"
         data-melt-part="root"
       >
         <span>{a.labelnm}</span>
@@ -21,7 +21,7 @@
       <input
         type="text"
         id={a.id}
-        class="h-10 w-[80%] rounded-md bg-white px-3 py-2 text-magnum-700"
+        class="h-10 w-100 rounded-md bg-white px-3 py-2 text-magnum-700"
         placeholder={a.placeholder}
       />
     </div>

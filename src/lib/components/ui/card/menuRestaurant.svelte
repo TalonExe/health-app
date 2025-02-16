@@ -18,6 +18,6 @@
     <CardContent>
     </CardContent>
     <CardFooter>
-      <button type="button">Modify</button>
+      <button class="text-purple-100 font-fold bg-black rounded-lg p-2 place-self-end">Modify</button>
     </CardFooter>
 </Card>
