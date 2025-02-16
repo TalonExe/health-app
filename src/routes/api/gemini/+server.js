@@ -34,11 +34,11 @@ export async function POST({ request }) {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text();
-
+        let text = response.text();
+        text = text.replace(/^```JSON\n/, '').replace(/^```json\n/, '').replace(/\n```$/, '').replace(/\n/g, '').trim();
+        console.log(text)
         // Ensure valid JSON output
         const recommendedMenu = JSON.parse(text);
-
         return json(recommendedMenu);
     } catch (error) {
         console.error('Error with Gemini API:', error);

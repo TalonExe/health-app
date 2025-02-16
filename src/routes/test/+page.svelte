@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from "svelte";
-    let {user} = $props()
+
   let menu = [];
   let customerConditions = ["heart disease"]; // User's health conditions
   let filteredMenu = [];

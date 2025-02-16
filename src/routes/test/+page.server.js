@@ -1,51 +1,65 @@
+/** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
-    const userId = "12345"; // Replace with dynamic user ID
-
-    // Sample user health data
-    const userData = {
-        userId,
-        name: "John Doe",
-        email: "johndoe@example.com",
-        createdAt: new Date().toISOString(),
-        healthConditions: ["Severe Allergy", "Diabetes", "High Blood Pressure"], // Add more as needed
-        riskLevel: "High", // New: Indicates critical condition
-        foodRestrictions: ["Peanuts", "Sugar", "High-Sodium Foods"], // Critical foods to avoid
+    // Initialize with null to indicate data is not yet loaded
+    const state = {
+        allMenu: null,
+        filteredMenu: null,
+        errorMessage: "",
+        isFiltering: true
     };
 
+    const restaurantId = "healthy-bites";
+    const userConditions = ["High Cholesterol", "Diabetes"];
+
     try {
-        // 🔹 POST request to store user health data
-        const postRes = await fetch("/api/user", {
+        // Fetch menu data
+        const menuResponse = await fetch(`/api/menu?restaurantId=${restaurantId}`);
+        const menuData = await menuResponse.json();
+
+        if (!menuResponse.ok) {
+            throw new Error(menuData.error || 'Failed to fetch menu data');
+        }
+
+        if (!menuData.success || !menuData.menu?.Food) {
+            throw new Error('Invalid menu data received');
+        }
+
+        // Set menu data
+        state.allMenu = menuData.menu.Food;
+
+        // Fetch AI recommendations
+        const aiResponse = await fetch("/api/gemini", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData),
+            headers: { 
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                menu: Object.entries(state.allMenu).map(([foodName]) => ({ 
+                    food: foodName 
+                })),
+                conditions: userConditions,
+            }),
         });
 
-        const postData = await postRes.json();
-
-        if (!postData.success) {
-            console.error("Error storing user data:", postData.error);
-            throw new Error(postData.error);
+        if (!aiResponse.ok) {
+            throw new Error('Failed to get AI recommendations');
         }
 
-        // 🔹 GET request to retrieve user health data
-        const getRes = await fetch(`/api/user?userId=${userId}`);
-        const getData = await getRes.json();
+        const aiData = await aiResponse.json();
 
-        if (!getData.success) {
-            console.error("Error fetching user data:", getData.error);
-            throw new Error(getData.error);
+        if (!aiData.recommendations) {
+            throw new Error('Invalid AI response format');
         }
 
-        const user = getData.user;
+        // Set filtered menu only after we have valid data
+        state.filteredMenu = new Set(aiData.recommendations.map(({ food }) => food));
 
-        // 🔥 Emergency Check: If condition worsens, trigger alert!
-        if (user.riskLevel === "High") {
-            console.warn("⚠️ ALERT: The child's health is at high risk! Extra caution required.");
-        }
-
-        return { user };
     } catch (error) {
-        console.error("Critical error:", error);
-        throw new Error("Failed to load user health data.");
+        console.error('Error in load function:', error);
+        state.errorMessage = error.message || "Failed to load menu.";
+    } finally {
+        state.isFiltering = false;
     }
+
+    return state;
 }
